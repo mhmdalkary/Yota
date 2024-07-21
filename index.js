@@ -35,4 +35,16 @@ function startProject() {
 	});
 }
 
-startProject();
+// Listen to the port provided by Heroku
+const PORT = process.env.PORT || 3000;
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+	res.writeHead(200, { "Content-Type": "text/plain" });
+	res.end("Goat-Bot is running\n");
+});
+
+server.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
+	startProject();
+});
